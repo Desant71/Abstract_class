@@ -18,7 +18,7 @@ public class CheckingAccount extends Account {
 
     @Override
     public boolean add(long amount) {
-        balance = +amount;
+        balance += amount;
         return false;
     }
 }

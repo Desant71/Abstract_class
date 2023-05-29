@@ -1,6 +1,6 @@
 package account;
 
-public class Account {
+public abstract class Account {
     protected String name;
     protected long balance;
 
@@ -10,15 +10,19 @@ public class Account {
 
     }
 
-    public boolean pay(long amount) {
+    public abstract boolean pay(long amount);
 
+    public abstract boolean add(long amount);
 
+    public boolean transfer(Account accountTo, int amount) {
+        if (pay(amount)) {
+            if (accountTo.add(amount)) {
+                return true;
+            }
+        } else {
+            add(amount);
+            return false;
+        }
         return false;
     }
-
-    public boolean add(long amount) {
-
-        return false;
-    }
-
 }
